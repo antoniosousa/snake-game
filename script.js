@@ -23,7 +23,22 @@ function criarSnake(){
 	}
 }
 
+document.addEventListener("keydown",atualizar);
+
+function atualizar(event){
+	if(event.keyCode===39 && direcao != "left") direcao = "right";
+	if(event.keyCode===38 && direcao != "up") direcao = "down";
+	if(event.keyCode===37 && direcao != "right") direcao = "left";
+	if(event.keyCode===40 && direcao != "down") direcao = "up";
+}
+
 function iniciarGamer(){
+	
+	if(snake[0].x > 15*box && direcao ==="right") snake[0].x=0;
+	if(snake[0].x<0 && direcao ==="left") snake[0].x=16*box;
+	if(snake[0].y>15*box && direcao ==="up") snake[0].y=0;
+	if(snake[0].y<0 && direcao ==="down") snake[0].y=16*box;
+
 	criarBackGround();
 	criarSnake();
 
@@ -45,6 +60,7 @@ function iniciarGamer(){
 	}
 
 	snake.unshift(addHead);
+
 }
 
 let game = setInterval(iniciarGamer, 100);
