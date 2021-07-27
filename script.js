@@ -47,9 +47,9 @@ function atualizar(event){
 function iniciarGamer(){
 	
 	if(snake[0].x > 15*box && direcao ==="right") snake[0].x=0;
-	if(snake[0].x<0 && direcao ==="left") snake[0].x=16*box;
-	if(snake[0].y>15*box && direcao ==="up") snake[0].y=0;
-	if(snake[0].y<0 && direcao ==="down") snake[0].y=16*box;
+	if(snake[0].x < 0 && direcao ==="left") snake[0].x=16*box;
+	if(snake[0].y > 15*box && direcao ==="up") snake[0].y=0;
+	if(snake[0].y < 0 && direcao ==="down") snake[0].y=16*box;
 
 	criarBackGround();
 	criarSnake();
@@ -65,7 +65,13 @@ function iniciarGamer(){
 	if(direcao==="up") snakeY=snakeY+box;
 	if(direcao==="down") snakeY=snakeY-box;
 
-	snake.pop();
+	if(snakeX != comida.x || snakeY != comida.y){
+		snake.pop()
+	}else{
+		comida.x = Math.floor(Math.random()*15+1)*box;
+		comida.y = Math.floor(Math.random()*15+1)*box;
+	}
+
 
 	let addHead={
 		x:snakeX,
